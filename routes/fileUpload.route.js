@@ -1,19 +1,19 @@
 const express = require("express"); // import the express
 const router = express.Router(); // import the express Router
 
-// import controller
+// Import all the controllers
 const {
     localFileUpload,
     imageUpload,
     videoUpload,
-    imageSizeReducer
+    imageSizeReducer,
 } = require("../controllers/fileUploadController");
 
 // api routes (mapping)
 router.post("/localFileUpload", localFileUpload);
 router.post("/imageUpload", imageUpload);
 router.post("/videoUpload", videoUpload);
-router.post("/imageSizeReducer",imageSizeReducer)
+router.post("/imageSizeReducer", imageSizeReducer);
 
 // export
 module.exports = router;
