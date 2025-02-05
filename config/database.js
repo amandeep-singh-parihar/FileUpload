@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
+const mongoose = require("mongoose"); // import the mongoose
+require("dotenv").config(); // import the dotenv, by which it loads all the data of .env into the process object
 
+// function for connection to the DB
 exports.dbConnect = () => {
     mongoose
         .connect(process.env.MONGODB_URL, {

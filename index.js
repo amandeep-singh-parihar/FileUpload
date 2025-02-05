@@ -1,28 +1,27 @@
-// app create
-const express = require("express");
-const app = express();
-require("dotenv").config();
+const express = require("express"); // import express for creating app
+const app = express(); // creating express app
+require("dotenv").config(); // importing dotenv, which load all the data in the .env to the process object
 
-//port
+// Defining the PORT
 const PORT = process.env.PORT || 4000;
 
-//middle ware
-app.use(express.json());
-const fileupload = require("express-fileupload");
-app.use(fileupload());
+// Middlerwares
+app.use(express.json()); // express middleware
+const fileupload = require("express-fileupload"); // express-fileupload middleware for uploading file
+app.use(fileupload()); // using the express-fileupload middleware
 
-// db connect
+// Connection to the DB using the dbConnect function
 require("./config/database").dbConnect();
 
-//cloud connect
-const cloudinary = require("./config/cloudinary");
-cloudinary.cloudinaryConnect();
+// Connection to the cloud
+const cloudinary = require("./config/cloudinary"); // importing the cloudinary function form the config folder
+cloudinary.cloudinaryConnect(); // function to connect to the cloudinary
 
-//api route mounting
+// Mounting the api routes
 const Upload = require("./routes/fileUpload.route");
 app.use("/api/v1/upload", Upload);
 
-//activate server
+// Activate the server
 app.listen(PORT, () => {
     console.log("App is running at PORT : " + PORT);
 });

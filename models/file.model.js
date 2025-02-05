@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); // import the mongoose
 
+// define the schema of the file
 const fileSchema = new mongoose.Schema(
     {
         name: {
