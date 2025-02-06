@@ -1,5 +1,5 @@
 const File = require("../models/file.model"); // import the model which is used in this controller
-const cloudinary = require("cloudinary").v2;
+const cloudinary = require("cloudinary").v2; // import the cloudinary
 
 // localFileUpload -> handler function :- client k ek path se media fetch krta hai and uss media ko server k ek path pe upload kr deta hai
 exports.localFileUpload = async (req, res) => {
@@ -87,7 +87,7 @@ async function uploadFileToCloudinary(file, folder, quality) {
     }
     options.resource_type = "auto"; // Sets the resource_type to "auto", which allows Cloudinary to automatically detect the file type (image, video, etc.).
     return await cloudinary.uploader.upload(file.tempFilePath, options); /* file.tempFilePath is the temporary storage
-     path of a file on the server.
+    path of a file on the server.
     1-> cloudinary: This is the Cloudinary library you're using in your Node.js project.
     2-> .uploader.upload(): This is a method provided by Cloudinary that uploads a file.
     3-> This is the file's temporary path on your server. It tells Cloudinary where the file is stored on your system.
@@ -103,7 +103,7 @@ exports.imageUpload = async (req, res) => {
         const { name, tags, email } = req.body;
         // console.log(name, tags, email);
 
-        // fetching the image file from the from the form data on postman and save the it inside imageFile variable
+        // fetching the image file from the form data on postman and save the it inside imageFile variable
         const file = req.files.imageFile;
         // console.log(file);
 
@@ -115,13 +115,13 @@ exports.imageUpload = async (req, res) => {
         if (!isFileTypeSupported(fileType, supportedTypes)) {
             return res.status(400).json({
                 success: false,
-                message: "File format not supported",
+                message: "File format not supported !",
             });
         }
 
         // If the file format is supported
         const response = await uploadFileToCloudinary(file, "amandeep");
-        //    variable            method          (aboveOne,"folder_name")
+        //    variable         userdefined function (aboveOne,"folder_name")
         // console.log(response);
 
         // Save the entry in the Database, the fields inside are those as we create the schema
@@ -167,14 +167,14 @@ exports.videoUpload = async (req, res) => {
         if (!isFileTypeSupported(fileType, supportedTypes)) {
             return res.status(400).json({
                 success: false,
-                message: "File format not supported",
+                message: "File format not supported !",
             });
         }
 
         // If the file format supported
         // console.log("uploading to media");
         const response = await uploadFileToCloudinary(file, "amandeep");
-        //    variable            method          (aboveOne,"folder_name")
+        //    variable         userdefined function (aboveOne,"folder_name")
         // console.log(response);
 
         // Save the entry in the Database, the fields inside are those as we create the schema
@@ -218,14 +218,14 @@ exports.imageSizeReducer = async (req, res) => {
         if (!isFileTypeSupported(fileType, supportedTypes)) {
             return res.status(400).json({
                 success: false,
-                message: "File format not supported",
+                message: "File format not supported !",
             });
         }
 
         // If the file format supported
         // console.log("uploading to media");
         const response = await uploadFileToCloudinary(file, "amandeep", 50);
-        //    variable            method          (aboveOne,"folder_name")
+        //    variable         userdefined function (aboveOne,"folder_name")
         // console.log(response);
 
         // Save the entry in the Database, the fields inside are those as we create the schema
