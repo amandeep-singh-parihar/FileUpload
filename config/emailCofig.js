@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
+require("dotenv").config();
 
-//transporter -> it should it be in config upder config folder
+//transporter -> it should it be in config
 let transporter = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
     auth: {
